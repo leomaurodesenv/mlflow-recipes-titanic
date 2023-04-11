@@ -14,3 +14,4 @@ scikit-learn==1.2.2
 hyperopt==0.2.7
 pyspark==3.3.2
 delta-spark==2.3.0
+flaml==1.2.0

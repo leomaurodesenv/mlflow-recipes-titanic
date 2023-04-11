@@ -26,16 +26,18 @@ steps:
     post_split_filter_method: dataset_row_filter
 
   transform:
+    # Specifies the transformer method, sklearn-compatible
     using: "custom"
-    #
-    #  FIXME::OPTIONAL: Specifies the method that defines an sklearn-compatible transformer, which
-    #                   applies input feature transformation during model training and inference.
     transformer_method: transformer_fn
+
   train:
-    #
-    # FIXME::REQUIRED: Specifies the method to use for training. Options are "automl/flaml" for
-    #                  AutoML training or "custom" for user-defined estimators.
-    using: ""
+    # Specifies the method to use for training. Options are "automl/flaml" for
+    # AutoML training or "custom" for user-defined estimators.
+    # using: "automl/flaml" # it is not working
+    using: "custom"
+    estimator_method: estimator_fn
+    # calibrate_proba: isotonic
+
   evaluate:
     #
     # FIXME::OPTIONAL: Sets performance thresholds that a trained model must meet in order to be
@@ -48,6 +50,7 @@ steps:
     # Indicates whether or not a model that fails to meet performance thresholds should still
     # be registered to the MLflow Model Registry
     allow_non_validated_model: false
+
   # FIXME::OPTIONAL: Specify the dataset to use for batch scoring. All params serve the same function
   #                  as in `data`
   # ingest_scoring: {{INGEST_SCORING_CONFIG}}

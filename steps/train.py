@@ -5,6 +5,7 @@ This module defines the following routines used by the 'train' step:
   during training to produce a model recipe.
 """
 from typing import Any, Dict
+from sklearn.linear_model import LogisticRegression
 
 
 def estimator_fn(estimator_params: Dict[str, Any] = None) -> Any:
@@ -13,8 +14,4 @@ def estimator_fn(estimator_params: Dict[str, Any] = None) -> Any:
     The estimator's input and output signatures should be compatible with scikit-learn
     estimators.
     """
-    #
-    # FIXME::OPTIONAL: return a scikit-learn-compatible classification estimator with fine-tuned
-    #                  hyperparameters.
-
-    raise NotImplementedError
+    return LogisticRegression(random_state=0)
