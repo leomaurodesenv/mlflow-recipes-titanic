@@ -1,23 +1,18 @@
-#
-# FIXME::REQUIRED: set an MLflow experiment name to track recipe executions and artifacts.
-#
+# MLflow experiment name to track recipe executions and artifacts
 experiment:
-  name: ""
-  tracking_uri: "sqlite:///metadata/mlflow/mlruns.db"
-  artifact_location: "./metadata/mlflow/mlartifacts"
+  name: "titanic"
+  tracking_uri: "sqlite:///.mlflow/mlruns.db"
+  artifact_location: "./.mlflow/mlartifacts"
+
 model_registry:
-#
-# FIXME::OPTIONAL: Set the registry server URI. This property is especially useful if you have a
-#                  registry server that’s different from the tracking server.
-#   uri: "sqlite:///metadata/mlflow/registry.db"
-# FIXME::REQUIRED: Specifies the name of the Registered Model to use when registering a trained
-#                  model to the MLflow Model Registry.
-  model_name: ""
+  # Set the registry server URI
+  uri: "sqlite:///.mlflow/registry.db"
+  # Specifies the name of the Registered Model
+  model_name: "titanic-local"
 
 INGEST_CONFIG:
-  #
-  # FIXME::REQUIRED: Specify the format of the training and evaluation dataset. Natively supported
-  #                  formats are: parquet, spark_sql, delta.
+  # Specify the format of the training and evaluation dataset. 
+  # Natively supported formats are: parquet, spark_sql, delta.
   using: ""
   # FIXME::OPTIONAL: Specify the training and evaluation data location.
   # location: ""
