@@ -1,21 +1,24 @@
 # MLflow experiment name to track recipe executions and artifacts
 experiment:
   name: "titanic"
-  tracking_uri: "sqlite:///.mlflow/mlruns.db"
-  artifact_location: "./.mlflow/mlartifacts"
+  tracking_uri: "sqlite:///metadata/mlflow/mlruns.db"
+  artifact_location: "./metadata/mlflow/mlartifacts"
 
 model_registry:
   # Set the registry server URI
-  uri: "sqlite:///.mlflow/registry.db"
+  uri: "sqlite:///metadata/mlflow/registry.db"
   # Specifies the name of the Registered Model
   model_name: "titanic-local"
 
 INGEST_CONFIG:
-  # Specify the format of the training and evaluation dataset. 
-  # Natively supported formats are: parquet, spark_sql, delta.
-  using: ""
-  # FIXME::OPTIONAL: Specify the training and evaluation data location.
-  # location: ""
+  # Specify the format of the training and evaluation dataset
+  # Natively supported formats are: parquet, spark_sql, delta
+  using: "custom"
+  # Specify the training and evaluation data location
+  location: ./data/input/train.csv
+  # Specify the loading function
+  loader_method: load_dataset
+
 
 # INGEST_SCORING_CONFIG:
 #   For different options please read: https://github.com/mlflow/recipes-classification-template#batch-scoring

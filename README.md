@@ -1,4 +1,6 @@
 
+https://www.kaggle.com/competitions/titanic/
+
 ```sh
 # Create a Python environment
 $ python -m venv .venv
