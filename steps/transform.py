@@ -3,14 +3,10 @@ This module defines the following routines used by the 'transform' step:
 
 - ``transformer_fn``: Defines transforming logic to use before the estimator.
 """
-import pandas as pd
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import FunctionTransformer, OneHotEncoder, OrdinalEncoder
-
-
-def return_common_columns(df: pd.DataFrame) -> pd.DataFrame:
-    pass
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder, StandardScaler
 
 
 def transformer_fn():
@@ -19,24 +15,20 @@ def transformer_fn():
     The transformer's input and output signatures should be compatible with scikit-learn
     transformers.
     """
-    return Pipeline(
+    categorical_features = ["Pclass", "Sex", "Embarked"]
+    numeric_features = ["SibSp", "Parch", "Fare", "Age"]
+    numeric_pipeline = Pipeline(
         steps=[
-            (
-                "encoder",
-                ColumnTransformer(
-                    transformers=[
-                        (
-                            "onehot",
-                            OneHotEncoder(categories="auto"),
-                            ["Sex", "Embarked"],
-                        ),
-                        (
-                            "ordinal",
-                            OrdinalEncoder(categories="auto"),
-                            ["Sex", "Embarked"],
-                        ),
-                    ]
-                ),
-            ),
+            ("imputer", SimpleImputer(strategy="median")),
+            ("scaler", StandardScaler())
+        ]
+    )
+
+    # return preprocessor
+    return ColumnTransformer(
+        transformers=[
+            ("onehot", OneHotEncoder(categories="auto"), categorical_features),
+            ("ordinal", OrdinalEncoder(categories="auto"), categorical_features),
+            ("numerical", numeric_pipeline, numeric_features),
         ]
     )
