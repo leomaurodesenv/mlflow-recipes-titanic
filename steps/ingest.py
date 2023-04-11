@@ -17,7 +17,8 @@ def load_dataset(location: str, *args) -> pd.DataFrame:
 
     :param location: The path to the dataset file.
     :args: The dataset reading using method
-    :return: A Pandas DataFrame representing the content of the specified file.
+    :return: pd.DataFrame representing the content of the specified file.
     """
-    import pandas as pd
-    return pd.read_csv(location, index_col=0)
+    columns = ["Survived", "Pclass", "Sex", "SibSp", "Parch", "Fare", "Age", "Embarked"]
+    df = pd.read_csv(location, index_col=0)
+    return df[columns].copy(deep=True)

@@ -4,7 +4,7 @@ This module defines the following routines used by the 'train' step:
 - ``estimator_fn``: Defines the customizable estimator type and parameters that are used
   during training to produce a model recipe.
 """
-from typing import Dict, Any
+from typing import Any, Dict
 
 
 def estimator_fn(estimator_params: Dict[str, Any] = None) -> Any:
