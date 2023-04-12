@@ -22,3 +22,16 @@ def load_dataset(location: str, *args) -> pd.DataFrame:
     columns = ["Survived", "Pclass", "Sex", "SibSp", "Parch", "Fare", "Age", "Embarked"]
     df = pd.read_csv(location, index_col=0)
     return df[columns].copy(deep=True)
+
+
+def load_testset(location: str, *args) -> pd.DataFrame:
+    """
+    Load the test set as a `pd.DataFrame`
+
+    :param location: The path to the dataset file.
+    :args: The dataset reading using method
+    :return: pd.DataFrame representing the content of the specified file.
+    """
+    columns = ["Pclass", "Sex", "SibSp", "Parch", "Fare", "Age", "Embarked"]
+    df = pd.read_csv(location, index_col=0)
+    return df[columns].copy(deep=True)

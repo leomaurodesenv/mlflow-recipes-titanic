@@ -61,13 +61,25 @@ steps:
         threshold: 0.7
       - metric: f1_score
         threshold: 0.5
-
   register:
     # Indicates whether or not a model that fails to meet performance thresholds
     allow_non_validated_model: false
 
+  # Optional: specify the dataset to use for batch scoring
+  # It only works with Spark
+  # ingest_scoring:
+  #   using: "custom"
+  #   location: ./data/input/test.csv
+  #   loader_method: load_testset
+  # predict:
+  #   output:
+  #     using: "parquet"
+  #     location: ./data/output/submission.parquet
+  #   result_type: "int"
+  #   save_mode: "default"
+
 # custom_metrics:
-#   FIXME::OPTIONAL: Defines custom performance metrics to compute during model development.
+# Defines custom performance metrics to compute during model development
 #     - name: ""
 #       function: get_custom_metrics
 #       greater_is_better: False

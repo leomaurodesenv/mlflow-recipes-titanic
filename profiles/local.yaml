@@ -18,12 +18,3 @@ INGEST_CONFIG:
   location: ./data/input/train.csv
   # Specify the loading function
   loader_method: load_dataset
-
-
-# PREDICT_OUTPUT_CONFIG:
-#   For different options please read: https://github.com/mlflow/recipes-classification-template#predict-step
-#   FIXME::OPTIONAL: Specify the format of the scored dataset. Natively supported formats are:
-#                    parquet, delta, table.
-#   using: ""
-#   FIXME::OPTIONAL: Specify the output location of the batch scoring predict step.
-#   location: ""
