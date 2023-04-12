@@ -25,6 +25,8 @@ Download or clone this repository.
 
 ### Running
 
+You can run this code locally or using [databricks](https://www.databricks.com/).
+
 ```sh
 # Create a Python environment
 $ python -m venv .venv
