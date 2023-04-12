@@ -10,7 +10,6 @@
 
 # COMMAND ----------
 
-# MAGIC %pip install mlflow
 # MAGIC %pip install -r ../requirements.txt
 
 # COMMAND ----------
@@ -22,6 +21,7 @@
 from mlflow.recipes import Recipe
 
 r = Recipe(profile="databricks")
+r.clean()
 
 # COMMAND ----------
 
@@ -29,7 +29,7 @@ r = Recipe(profile="databricks")
 
 # COMMAND ----------
 
-r.inspect()
+# r.inspect()
 
 # COMMAND ----------
 
