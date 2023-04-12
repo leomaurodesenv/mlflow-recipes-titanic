@@ -20,14 +20,6 @@ INGEST_CONFIG:
   loader_method: load_dataset
 
 
-# INGEST_SCORING_CONFIG:
-#   For different options please read: https://github.com/mlflow/recipes-classification-template#batch-scoring
-#   FIXME::OPTIONAL: Specify the format of the scoring dataset. Natively supported formats are:
-#                    parquet, spark_sql, delta.
-#   using: ""
-#   FIXME::OPTIONAL: Specify the scoring data location.
-#   location: ""
-
 # PREDICT_OUTPUT_CONFIG:
 #   For different options please read: https://github.com/mlflow/recipes-classification-template#predict-step
 #   FIXME::OPTIONAL: Specify the format of the scored dataset. Natively supported formats are:

@@ -33,9 +33,16 @@ $ source .venv/bin/activate
 # Install the requirements
 $ pip install -r requirements.txt
 
-# Run: notebooks/jupyter; or
-# Run: notebooks/databricks; or
+# Run using: notebooks/jupyter; or
+# Run using: notebooks/databricks; or
+# Run using: terminal
 $ mlflow recipes run --profile local
+
+# Visualize the experiment performance
+# Paths according to `profiles/local.yaml`
+$ mlflow ui \
+$   --backend-store-uri="sqlite:///metadata/mlflow/mlruns.db" \
+$   --default-artifact-root="./metadata/mlflow/mlartifacts"
 ```
 
 ---

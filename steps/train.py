@@ -14,4 +14,6 @@ def estimator_fn(estimator_params: Dict[str, Any] = None) -> Any:
     The estimator's input and output signatures should be compatible with scikit-learn
     estimators.
     """
-    return LogisticRegression(random_state=0)
+    if estimator_params is None:
+        return LogisticRegression(random_state=0)
+    return LogisticRegression(random_state=0, **estimator_params)

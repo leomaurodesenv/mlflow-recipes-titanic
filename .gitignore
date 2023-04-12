@@ -131,6 +131,7 @@ dmypy.json
 # MLFlow Recipes
 .mlflow
 mlflow/
+mlruns/
 
 # ignore everything in the following folders
 data/**

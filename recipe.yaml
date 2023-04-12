@@ -9,7 +9,7 @@ recipe: "classification/v1"
 # Specifies the target column name for model training and evaluation.
 target_col: "Survived"
 # Specifies the value of `target_col` that is considered the positive class.
-positive_class: "1"
+positive_class: 1
 # Sets the primary metric to use to evaluate model performance
 # Built-in primary metrics are: recall_score, precision_score, f1_score, accuracy_score.
 primary_metric: "accuracy_score"
@@ -33,35 +33,41 @@ steps:
   train:
     # Specifies the method to use for training. Options are "automl/flaml" for
     # AutoML training or "custom" for user-defined estimators.
-    # using: "automl/flaml" # it is not working
+    # using: "automl/flaml" # it runs FLAML from Microsoft
     using: "custom"
     estimator_method: estimator_fn
-    # calibrate_proba: isotonic
+    # calibrate_proba: isotonic # it is not working
+    tuning:
+      enabled: true
+      max_trials: 5
+      parallelism: 1
+      sample_fraction: 0.5
+      parameters:
+        penalty:
+          values: ["none", "l2"]
+        solver:
+          values: ["lbfgs"]
+        tol:
+          distribution: "uniform"
+          low: 0.0001
+          high: 0.1
+        max_iter:
+          values: [5000]
 
   evaluate:
-    #
-    # FIXME::OPTIONAL: Sets performance thresholds that a trained model must meet in order to be
-    #                  eligible for registration to the MLflow Model Registry.
-    #
-    # validation_criteria:
-    #   - metric: f1_score
-    #     threshold: 0.9
+    # Sets performance thresholds to trained model be eligible for registration
+    validation_criteria:
+      - metric: accuracy_score
+        threshold: 0.7
+      - metric: f1_score
+        threshold: 0.5
+
   register:
-    # Indicates whether or not a model that fails to meet performance thresholds should still
-    # be registered to the MLflow Model Registry
+    # Indicates whether or not a model that fails to meet performance thresholds
     allow_non_validated_model: false
 
-  # FIXME::OPTIONAL: Specify the dataset to use for batch scoring. All params serve the same function
-  #                  as in `data`
-  # ingest_scoring: {{INGEST_SCORING_CONFIG}}
-  # predict:
-  #   output: {{PREDICT_OUTPUT_CONFIG}}
-  #   model_uri: "models/model.pkl"
-  #   result_type: "double"
-  #   save_mode: "default
 # custom_metrics:
 #   FIXME::OPTIONAL: Defines custom performance metrics to compute during model development.
 #     - name: ""
 #       function: get_custom_metrics
 #       greater_is_better: False
-
