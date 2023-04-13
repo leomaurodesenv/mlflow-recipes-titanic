@@ -4,8 +4,8 @@ This module defines the following routines used by the 'transform' step:
 - ``transformer_fn``: Defines transforming logic to use before the estimator.
 """
 from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
+from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder, StandardScaler
 
 
