@@ -82,7 +82,7 @@ class CustomClassifier(BaseEstimator, ClassifierMixin):
         dataset = PytorchDataset(X, y)
         data_loader = DataLoader(dataset, batch_size=self.batch_size, shuffle=False)
         # Train the model
-        trainer = pl.Trainer(max_epochs=10)
+        trainer = pl.Trainer(max_epochs=50)
         trainer.fit(model=self.base, train_dataloaders=data_loader)
 
     def predict(self, X):
