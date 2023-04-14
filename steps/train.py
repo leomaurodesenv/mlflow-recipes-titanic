@@ -4,15 +4,16 @@ This module defines the following routines used by the 'train' step:
 - ``estimator_fn``: Defines the customizable estimator type and parameters that are used
   during training to produce a model recipe.
 """
-import pandas as pd
 from typing import Any, Dict
-import torch
-from torch.utils.data import Dataset, DataLoader
+
 import lightning.pytorch as pl
-from torch import optim, nn
+import numpy as np
+import pandas as pd
+import torch
 import torchmetrics
 from sklearn.base import BaseEstimator, ClassifierMixin
-import numpy as np
+from torch import nn, optim
+from torch.utils.data import DataLoader, Dataset
 
 
 class PytorchDataset(Dataset):
